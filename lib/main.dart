@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'model/Pokemon.dart';
-import 'page/PokemonListPage.dart';
+import 'page/feed/PokemonFeedPage.dart';
+import 'repository/PokemonRepository.dart';
 
 void main() {
   runApp(const Pokedex());
@@ -12,39 +12,15 @@ class Pokedex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var baseUrl =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
-
-    final List<Pokemon> pokemonList = buildPokemons(baseUrl);
-
     return MaterialApp(
       title: 'Pokedex Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PokemonListPage(
+      home: PokemonFeedPage(
         title: 'Pokedex',
-        pokemons: pokemonList,
+        repository: MockPokemonRepository(),
       ),
-      initialRoute: "/",
-      routes: {
-        "/details": (context) {
-          return PokemonListPage(
-            title: 'Pokedex',
-            pokemons: pokemonList,
-          );
-        },
-      },
     );
-  }
-
-  List<Pokemon> buildPokemons(String baseUrl) {
-    return List<Pokemon>.generate(100, (index) {
-      final position = index + 1;
-      return Pokemon(
-          id: position,
-          imageUrl: "$baseUrl/$position.png",
-          name: "name_$position");
-    });
   }
 }

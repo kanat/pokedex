@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../model/Pokemon.dart';
-
 class ShapedText extends StatelessWidget {
   final String text;
 
@@ -15,12 +13,14 @@ class ShapedText extends StatelessWidget {
           decoration: const BoxDecoration(
               color: Colors.white54,
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(12.0))),
-          padding: const EdgeInsets.all(8.0),
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
           child: Text(
             text,
             style: const TextStyle(
-              color: Colors.white, ),
+              fontSize: 12,
+              color: Colors.white,
+            ),
           ),
         )
       ],
